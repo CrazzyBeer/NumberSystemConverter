@@ -1,5 +1,9 @@
 package com.NumberConverter;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Vector;
 
 import javafx.beans.value.ChangeListener;
@@ -7,11 +11,14 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.DirectoryChooser;
 
 public class MainController {
 	public Button add;
@@ -211,5 +218,37 @@ public class MainController {
 		newField.change();
 
 		fields.add(newField);
+	}
+	
+	public void savePressed() {
+		
+		 final DirectoryChooser directoryChooser = new DirectoryChooser();
+         final File selectedDirectory = directoryChooser.showDialog(null);
+         String path = selectedDirectory.getAbsolutePath();
+         File log = new File(path + "NumberConverterLog.txt");
+         
+         try {
+			PrintWriter pw = new PrintWriter(new FileWriter(log));
+			pw.println("Main system: " + mainSystem.getText());
+			pw.println("Main number: " + mainNumber.getText());
+			
+			for (Field f : fields) {
+				pw.print(f.getData());
+			}
+			pw.close();
+			
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Done!");
+			alert.setContentText("Saving done");
+			alert.showAndWait();
+			
+		} catch (IOException e) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error");
+			alert.setContentText("Error saving the file " + "\n" + e.getMessage());
+			alert.showAndWait();
+		}
+         
+		
 	}
 }

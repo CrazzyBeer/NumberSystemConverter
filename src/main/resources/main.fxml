@@ -13,11 +13,11 @@
                <columnConstraints>
                   <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" />
                   <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="-Infinity" />
-                  <ColumnConstraints fillWidth="false" hgrow="NEVER" maxWidth="1.7976931348623157E308" minWidth="10.0" />
+                  <ColumnConstraints halignment="CENTER" maxWidth="1.7976931348623157E308" minWidth="10.0" />
                </columnConstraints>
                <rowConstraints>
                   <RowConstraints maxHeight="-Infinity" minHeight="10.0" percentHeight="0.0" prefHeight="30.0" vgrow="ALWAYS" />
-                  <RowConstraints maxHeight="-Infinity" minHeight="10.0" percentHeight="0.0" prefHeight="30.0" vgrow="ALWAYS" />
+                  <RowConstraints maxHeight="-Infinity" minHeight="10.0" percentHeight="0.0" prefHeight="30.0" valignment="CENTER" />
                </rowConstraints>
                <children>
                   <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="Number" GridPane.rowIndex="1">
@@ -46,7 +46,12 @@
                         <Insets bottom="5.0" right="5.0" top="10.0" />
                      </GridPane.margin>
                   </TextField>
-                  <Button fx:id="add" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#addPressed" text="Add Field" GridPane.columnIndex="2" GridPane.rowSpan="2147483647">
+                  <Button fx:id="add" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#addPressed" text="Add Field" GridPane.columnIndex="2">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#savePressed" text="Save" GridPane.columnIndex="2" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </GridPane.margin>

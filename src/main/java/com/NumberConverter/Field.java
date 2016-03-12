@@ -55,6 +55,10 @@ public class Field {
 		this.getNumberField().setText("");
 	}
 	
+	public String getData() {
+		return "\n" + systemField.getText() + " : " + numberField.getText();
+	}
+	
 	public TextField getNumberField() {
 		return numberField;
 	}

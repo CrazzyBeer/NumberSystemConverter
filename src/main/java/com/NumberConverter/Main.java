@@ -1,10 +1,9 @@
 package com.NumberConverter;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 
 
 public class Main extends Application {
@@ -25,6 +24,16 @@ public class Main extends Application {
 	}
 	
 	public static void main(String[] args) {
-		launch(args);
+		if (args.length == 3) {
+			String number = args[0];
+			String a = args[1];
+			String b = args[2];
+			System.out.println(Converter.fromXtoY(number, Integer.parseInt(a), Integer.parseInt(b)));
+			System.exit(0);
+		} else {
+			launch(args);
+		}
+
+		
 	}
 }
