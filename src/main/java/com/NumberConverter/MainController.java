@@ -39,8 +39,8 @@ public class MainController {
 
 		mainSystem.textProperty().addListener(new ChangeListener<String>() {
 			/*
-			 * If the value is a number, its length is greater than 0
-			 * and it is contained in [2, 36]
+			 * If the value is a number, its length is greater than 0 and it is
+			 * contained in [2, 36]
 			 */
 			@Override
 			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
@@ -69,7 +69,7 @@ public class MainController {
 		});
 
 		mainNumber.textProperty().addListener(new ChangeListener<String>() {
-			/* 
+			/*
 			 * If the value is a number, its length is greater than 0
 			 */
 			@Override
@@ -87,8 +87,9 @@ public class MainController {
 	}
 
 	/**
-	 * Checks if the new String in the mainNumber has it's elements
-	 * in the bounds of the given system. They should be [0, system)
+	 * Checks if the new String in the mainNumber has it's elements in the
+	 * bounds of the given system. They should be [0, system)
+	 * 
 	 * @param newValue
 	 * @return true if fits, false if doesn't fit
 	 */
@@ -107,8 +108,9 @@ public class MainController {
 	}
 
 	/**
-	 * Adds the error class to the field containing an error
-	 * Checks if it already contains such a class
+	 * Adds the error class to the field containing an error Checks if it
+	 * already contains such a class
+	 * 
 	 * @param field
 	 */
 	public void addError(TextField field) {
@@ -117,10 +119,11 @@ public class MainController {
 		}
 		error = 1;
 	}
-	
+
 	/**
-	 * Removes the error class to the field no more containing an error
-	 * Checks if it already contains such a class
+	 * Removes the error class to the field no more containing an error Checks
+	 * if it already contains such a class
+	 * 
 	 * @param field
 	 */
 	public void removeError(TextField field) {
@@ -131,8 +134,8 @@ public class MainController {
 	}
 
 	/**
-	 * Propagates the change to all the fields
-	 * If the is an error then it clears them
+	 * Propagates the change to all the fields If the is an error then it clears
+	 * them
 	 * 
 	 */
 	public void changeAll() {
@@ -163,9 +166,10 @@ public class MainController {
 
 		TextField system = new TextField();
 		system.textProperty().addListener(new ChangeListener<String>() {
-			/* If it's a number and its length is greater than 0 
-			 * then change it according to the mainSystem and mainNumber
-			 * */
+			/*
+			 * If it's a number and its length is greater than 0 then change it
+			 * according to the mainSystem and mainNumber
+			 */
 			@Override
 			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
 				if (newValue.matches("\\d*")) {
@@ -219,36 +223,42 @@ public class MainController {
 
 		fields.add(newField);
 	}
-	
+
 	public void savePressed() {
-		
-		 final DirectoryChooser directoryChooser = new DirectoryChooser();
-         final File selectedDirectory = directoryChooser.showDialog(null);
-         String path = selectedDirectory.getAbsolutePath();
-         File log = new File(path + "NumberConverterLog.txt");
-         
-         try {
+		if (error == 1)
+			return;
+
+		final DirectoryChooser directoryChooser = new DirectoryChooser();
+		final File selectedDirectory = directoryChooser.showDialog(null);
+		String path = System.getProperty("user.home");
+		try {
+			path = selectedDirectory.getAbsolutePath();
+		} catch (Exception e) {
+			// Ignored
+		}
+
+		try {
+			File log = new File(path + "/NumberConverterLog.txt");
 			PrintWriter pw = new PrintWriter(new FileWriter(log));
 			pw.println("Main system: " + mainSystem.getText());
 			pw.println("Main number: " + mainNumber.getText());
-			
+
 			for (Field f : fields) {
 				pw.print(f.getData());
 			}
 			pw.close();
-			
+
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Done!");
-			alert.setContentText("Saving done");
+			alert.setContentText("Saving done to " + path);
 			alert.showAndWait();
-			
+
 		} catch (IOException e) {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Error");
 			alert.setContentText("Error saving the file " + "\n" + e.getMessage());
 			alert.showAndWait();
 		}
-         
-		
+
 	}
 }

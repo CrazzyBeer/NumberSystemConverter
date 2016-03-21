@@ -11,14 +11,14 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource("/main.fxml"));
+			Parent root = FXMLLoader.load(getClass().getResource("/FXML/main.fxml"));
 			Scene scene = new Scene(root,400,400);
-			scene.getStylesheets().add(getClass().getResource("/application.css").toExternalForm());
+			scene.getStylesheets().add(getClass().getResource("/CSS/application.css").toExternalForm());
 			
 			primaryStage.setScene(scene);
 			primaryStage.setMinWidth(400);
 			primaryStage.setMinHeight(530);
-			primaryStage.getIcons().add(new Image("/icon.png"));
+			primaryStage.getIcons().add(new Image("/img/icon.png"));
 			primaryStage.show();
 		} catch(Exception e) {
 			e.printStackTrace();
