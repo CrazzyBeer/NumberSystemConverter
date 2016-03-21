@@ -3,7 +3,7 @@ Converts numbers of any length from base A to base B
 
 **Download**: https://sourceforge.net/projects/numbersystemconverter/
 
-![Application Preview](https://github.com/CrazzyBeer/NumberSystemConverter/blob/master/src/main/resources/FXML/preview.png "Preview image")
+![Application Preview](https://github.com/CrazzyBeer/NumberSystemConverter/blob/master/src/main/resources/img/preview.png "Preview image")
 
 #Built with:
 * **Java**
